@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AppointmentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,7 +23,14 @@ class Appointment
     private ?string $status = null;
 
     #[ORM\Column]
-    private ?float $despositAmount = null;
+    private ?float $depositAmount = null;
+
+    #[ORM\ManyToOne(inversedBy: 'appointments')]
+    private ?Customer $customer = null;
+
+    #[ORM\ManyToOne(inversedBy: 'appointments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TattooArtist $tattooArtist = null;
 
     public function getId(): ?int
     {
@@ -52,14 +61,38 @@ class Appointment
         return $this;
     }
 
-    public function getDespositAmount(): ?float
+    public function getDepositAmount(): ?float
     {
-        return $this->despositAmount;
+        return $this->depositAmount;
     }
 
-    public function setDespositAmount(float $despositAmount): static
+    public function setDepositAmount(float $depositAmount): static
     {
-        $this->despositAmount = $despositAmount;
+        $this->depositAmount = $depositAmount;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customer
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customer $customer): static
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function getTattooArtist(): ?TattooArtist
+    {
+        return $this->tattooArtist;
+    }
+
+    public function setTattooArtist(?TattooArtist $tattooArtist): static
+    {
+        $this->tattooArtist = $tattooArtist;
 
         return $this;
     }
