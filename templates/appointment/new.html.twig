@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Rendez-vous{% endblock %}
+
+{% block body %}
+    <h1>Creer un nouveau RDV</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">Sauvegarder</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('appointment_index') }}">Retourner à la liste des RDV</a>
+{% endblock %}

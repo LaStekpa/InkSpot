@@ -1,0 +1,38 @@
+services:
+  app:
+    image: php:8.2-fpm
+    container_name: inkspot_app
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8000:80"
+    depends_on:
+      - database
+
+  webserver:
+    image: nginx:latest
+    container_name: inkspot_webserver
+    ports:
+      - "0800:80"
+    volumes:
+      - .:/app
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+  database:
+    image: postgres:15
+    container_name: inkspot_db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Pasteklen00b&
+      POSTGRES_DB: inkspot
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    container_name: inkspot_adminer
+    ports:
+      - "8080:8080"

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}InkSpot{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>InkSpot</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ path('appointment_index') }}">Rendez-vous</a></li>
+                <li><a href="{{ path('tattoo_artist_index') }}">Tattoo Artists</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 InkSpot. All rights reserved.</p>
+    </footer>
+</body>
+</html>

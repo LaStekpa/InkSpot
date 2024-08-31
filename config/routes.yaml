@@ -3,3 +3,17 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+# config/routes.yaml
+appointment_index:
+    path: /appointments
+    controller: App\Controller\AppointmentController::index
+
+appointment_new:
+    path: /appointments/new
+    controller: App\Controller\AppointmentController::new
+
+tattoo_artist_index:
+    path: /tattoo-artist
+    controller: App\Controller\TattooArtistController::index
+
+# Et ainsi de suite pour les autres routes...
